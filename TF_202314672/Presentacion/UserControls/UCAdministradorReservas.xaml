@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="Presentacion.UserControls.UCAdministradorReservas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentacion.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000" Background="White">
+    
+    <UserControl.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="Navy"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#003399"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="CardColor1" Color="#E3FDFD"/>
+        <SolidColorBrush x:Key="CardColor2" Color="#CBF1F5"/>
+        <SolidColorBrush x:Key="CardColor3" Color="#B2E4E8"/>
+        <SolidColorBrush x:Key="CardColor4" Color="#A6E3E9"/>
+        <SolidColorBrush x:Key="CardColor5" Color="#B2E4E8"/>
+        <SolidColorBrush x:Key="CardColor6" Color="#CBF1F5"/>
+    </UserControl.Resources>
+
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBlock Text="Fecha programada:" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,10,0"/>
+            <DatePicker x:Name="dpFechaInicio" SelectedDateChanged="SelectionChangedFecha"/>
+            <TextBlock Text="   -" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,10,0"/>
+            <DatePicker x:Name="dpFechaFinal" SelectedDateChanged="SelectionChangedFecha"/>
+            <TextBlock Text="Estado:" VerticalAlignment="Center" FontWeight="SemiBold" Margin="20,0,10,0"/>
+            <ComboBox x:Name="cbEstado" Width="150" SelectionChanged="SelectionChangedEstado" >
+                <ComboBoxItem Content="Todos" />
+                <ComboBoxItem Content="Pendiente"/>
+                <ComboBoxItem Content="En proceso"/>
+                <ComboBoxItem Content="Completado"/>
+                <ComboBoxItem Content="Cancelado"/>
+            </ComboBox>
+            <TextBlock Text="Provincia:" VerticalAlignment="Center" FontWeight="SemiBold" Margin="20,0,10,0"/>
+            <ComboBox x:Name="cbProvincia" Width="150" SelectionChanged="SelectionChangedProvincia" >
+                <ComboBoxItem Content="Todos"/>
+                <ComboBoxItem Content="Amazonas"/>
+                <ComboBoxItem Content="Áncash"/>
+                <ComboBoxItem Content="Apurímac"/>
+                <ComboBoxItem Content="Arequipa"/>
+                <ComboBoxItem Content="Ayacucho"/>
+                <ComboBoxItem Content="Cajamarca"/>
+                <ComboBoxItem Content="Cusco"/>
+                <ComboBoxItem Content="Huancavelica"/>
+                <ComboBoxItem Content="Huánuco"/>
+                <ComboBoxItem Content="Ica"/>
+                <ComboBoxItem Content="Junín"/>
+                <ComboBoxItem Content="La Libertad"/>
+                <ComboBoxItem Content="Lambayeque"/>
+                <ComboBoxItem Content="Lima"/>
+                <ComboBoxItem Content="Loreto"/>
+                <ComboBoxItem Content="Madre de Dios"/>
+                <ComboBoxItem Content="Moquegua"/>
+                <ComboBoxItem Content="Pasco"/>
+                <ComboBoxItem Content="Piura"/>
+                <ComboBoxItem Content="Puno"/>
+                <ComboBoxItem Content="San Martín"/>
+                <ComboBoxItem Content="Tacna"/>
+                <ComboBoxItem Content="Tumbes"/>
+                <ComboBoxItem Content="Ucayali"/>
+            </ComboBox>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="20,0,20,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Código" FontWeight="Bold" Foreground="#555"/>
+                <TextBlock Grid.Column="1" Text="Nombre del cliente" FontWeight="Bold" Foreground="#555"/>
+                <TextBlock Grid.Column="2" Text="Provincia" FontWeight="Bold" Foreground="#555"/>
+                <TextBlock Grid.Column="3" Text="Fecha" FontWeight="Bold" Foreground="#555"/>
+                <TextBlock Grid.Column="4" Text="Tipo de Servicio" FontWeight="Bold" Foreground="#555"/>
+                <TextBlock Grid.Column="5" Text="Estado" FontWeight="Bold" Foreground="#555" HorizontalAlignment="Center"/>
+            </Grid>
+            <Border Grid.Row="0" BorderBrush="#EEE" BorderThickness="0,0,0,2" VerticalAlignment="Bottom"/>
+
+            <ListBox Grid.Row="1" x:Name="lsbReservas" BorderThickness="0" Background="Transparent"
+                 HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemContainerStyle="{StaticResource CardListBoxItemStyle}" AlternationCount="6" MouseDoubleClick="DoubleClickListBox" >
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="CardBorder" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" 
+                            CornerRadius="8" Margin="0,5">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="1" Direction="270" Color="#EEE" BlurRadius="4" Opacity="0.5"/>
+                            </Border.Effect>
+
+                            <Grid MinHeight="45" Margin="20,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding ReservaId}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Cliente.ClienteNombre}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding ReservaProvincia}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="3" Text="{Binding ReservaFechaProgramada, StringFormat='{}{0:dd/MM/yyyy}'}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="4" Text="{Binding Servicio.ServicioNombre}" VerticalAlignment="Center"/>
+
+                                <StackPanel Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Ellipse Style="{StaticResource StatusReservaStyle}"/>
+                                    <TextBlock Text="{Binding ReservaEstado}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="0">
+                                <Setter TargetName="CardBorder" Property="Background" Value="{StaticResource CardColor1}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="1">
+                                <Setter TargetName="CardBorder" Property="Background" Value="{StaticResource CardColor2}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="2">
+                                <Setter TargetName="CardBorder" Property="Background" Value="{StaticResource CardColor3}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="3">
+                                <Setter TargetName="CardBorder" Property="Background" Value="{StaticResource CardColor4}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="4">
+                                <Setter TargetName="CardBorder" Property="Background" Value="{StaticResource CardColor5}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="5">
+                                <Setter TargetName="CardBorder" Property="Background" Value="{StaticResource CardColor6}"/>
+                            </DataTrigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CardBorder" Property="BorderBrush" Value="Navy"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+
+        <Grid Grid.Row="2" Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Cantidad de reservas activas:" Foreground="Gray"/>
+                <TextBlock x:Name="tbContadorReservas" Text="0" Foreground="Gray" FontWeight="SemiBold" Margin="5,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Content="Agregar Reserva" Style="{StaticResource PrimaryButton}" Click="btnAgregarReserva"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

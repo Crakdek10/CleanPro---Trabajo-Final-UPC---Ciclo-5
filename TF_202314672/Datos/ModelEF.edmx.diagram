@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ab5a08cbac34df49dd11066a83ca7b2" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="CLEANPRODBModel.Administrador" Width="1.5" PointX="8.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLEANPRODBModel.Cleaner" Width="1.5" PointX="1.125" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLEANPRODBModel.Cliente" Width="1.5" PointX="2.875" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLEANPRODBModel.Comprobante" Width="1.5" PointX="6.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLEANPRODBModel.Reserva" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLEANPRODBModel.Servicio" Width="1.5" PointX="5.125" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="CLEANPRODBModel.FK_Cleaner_TO_Reserva" ManuallyRouted="false" />
+        <AssociationConnector Association="CLEANPRODBModel.FK_Cliente_TO_Reserva" ManuallyRouted="false" />
+        <AssociationConnector Association="CLEANPRODBModel.FK_Reserva_TO_Comprobante" ManuallyRouted="false" />
+        <AssociationConnector Association="CLEANPRODBModel.FK_Servicio_TO_Reserva" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

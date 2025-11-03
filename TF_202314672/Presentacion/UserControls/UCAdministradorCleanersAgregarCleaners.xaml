@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="Presentacion.UserControls.UCAdministradorCleanersAgregarCleaners"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentacion.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000" Background="White">
+
+    <UserControl.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="Navy"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#003399"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Navy"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Agregar Cleaner" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="0,0,40,0">
+                <TextBlock Text="Foto de Perfil" Style="{StaticResource FormLabel}" Margin="0,0,0,10"/>
+                <Border BorderBrush="#DDD" BorderThickness="1" Height="250" CornerRadius="8">
+                    <Image x:Name="imgFotoCleaner" Stretch="UniformToFill"/>
+                </Border>
+                <Button Content="Seleccionar Foto" Margin="0,10,0,0" Style="{StaticResource SecondaryButton}" Click="btnSeleccionarFoto"/>
+            </StackPanel>
+
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <TextBlock Text="DNI de cleaner:" Style="{StaticResource FormLabel}"/>
+                    <TextBox x:Name="tbDNICleaner"/>
+
+                    <TextBlock Text="Nombre de cleaner:" Style="{StaticResource FormLabel}"/>
+                    <TextBox x:Name="tbNombreCleaner"/>
+
+                    <TextBlock Text="Número de celular:" Style="{StaticResource FormLabel}"/>
+                    <TextBox x:Name="tbNumeroCelCleaner"/>
+
+                    <TextBlock Text="Fecha de nacimiento:" Style="{StaticResource FormLabel}"/>
+                    <DatePicker x:Name="dpFechaNacimiento"/>
+
+                    <TextBlock Text="Departamento:" Style="{StaticResource FormLabel}"/>
+                    <ComboBox x:Name="cbProvincia">
+                        <ComboBoxItem Content="Amazonas"/>
+                        <ComboBoxItem Content="Áncash"/>
+                        <ComboBoxItem Content="Apurímac"/>
+                        <ComboBoxItem Content="Arequipa"/>
+                        <ComboBoxItem Content="Ayacucho"/>
+                        <ComboBoxItem Content="Cajamarca"/>
+                        <ComboBoxItem Content="Cusco"/>
+                        <ComboBoxItem Content="Huancavelica"/>
+                        <ComboBoxItem Content="Huánuco"/>
+                        <ComboBoxItem Content="Ica"/>
+                        <ComboBoxItem Content="Junín"/>
+                        <ComboBoxItem Content="La Libertad"/>
+                        <ComboBoxItem Content="Lambayeque"/>
+                        <ComboBoxItem Content="Lima"/>
+                        <ComboBoxItem Content="Loreto"/>
+                        <ComboBoxItem Content="Madre de Dios"/>
+                        <ComboBoxItem Content="Moquegua"/>
+                        <ComboBoxItem Content="Pasco"/>
+                        <ComboBoxItem Content="Piura"/>
+                        <ComboBoxItem Content="Puno"/>
+                        <ComboBoxItem Content="San Martín"/>
+                        <ComboBoxItem Content="Tacna"/>
+                        <ComboBoxItem Content="Tumbes"/>
+                        <ComboBoxItem Content="Ucayali"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Sexo:" Style="{StaticResource FormLabel}"/>
+                    <ComboBox x:Name="cbSexo">
+                        <ComboBoxItem Content="Masculino"/>
+                        <ComboBoxItem Content="Femenino"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Contraseña:" Style="{StaticResource FormLabel}"/>
+                    <PasswordBox x:Name="pbContrasena"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
+            <Button Content="Volver" Style="{StaticResource SecondaryButton}" Click="btnVolver" />
+            <Button Content="Agregar" Style="{StaticResource PrimaryButton}" Margin="10,0,0,0" Click="btnAgregar"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

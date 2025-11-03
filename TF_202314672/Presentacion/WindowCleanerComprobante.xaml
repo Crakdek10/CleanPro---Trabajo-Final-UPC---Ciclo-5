@@ -1,0 +1,41 @@
+﻿<Window x:Class="Presentacion.WindowCleanerComprobante"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentacion"
+        mc:Ignorable="d"
+        Title="WindowCleanerComprobante" Height="480" Width="400">
+
+    <Window.Resources>
+        <Style x:Key="FormLabel" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
+        <TextBlock Text="Comprobante de pago" FontWeight="Bold" FontSize="20" TextAlignment="Center"/>
+        <TextBlock x:Name="tbOrden" Margin="0,5,0,10" FontSize="14" TextAlignment="Center"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5">
+            <TextBlock Text="Emitido por: " Style="{StaticResource FormLabel}" FontSize="12"/>
+            <TextBlock x:Name="tbCleaner" Style="{StaticResource FormLabel}" FontSize="12"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5">
+            <TextBlock Text="Fecha: " Style="{StaticResource FormLabel}" FontSize="12"/>
+            <TextBlock x:Name="tbFecha" Style="{StaticResource FormLabel}" FontSize="12"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5">
+            <TextBlock Text="Monto: " Style="{StaticResource FormLabel}" FontSize="12"/>
+            <TextBlock x:Name="tbMonto" Style="{StaticResource FormLabel}" FontSize="12" />
+        </StackPanel>
+        
+        <Image x:Name="imgQR" Width="180" Height="180" Margin="0,10"/>
+        <TextBlock Text="Escanea el código QR para visualizar a detalle el comprobante de pago"
+                   FontSize="10" TextAlignment="Center" Margin="0,10"/>
+        <Button  x:Name="btn_Volver" Content="Volver" Width="120" Style="{StaticResource SecondaryButton}" Click="BtnVolver"/>
+    </StackPanel>
+</Window>

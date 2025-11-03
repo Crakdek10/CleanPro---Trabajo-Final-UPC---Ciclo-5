@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CLEANPRODBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="AdministradorId" />
+          </Key>
+          <Property Name="AdministradorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdministradorUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdministradorContrasena" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cleaner">
+          <Key>
+            <PropertyRef Name="CleanerDNI" />
+          </Key>
+          <Property Name="CleanerDNI" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CleanerNombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CleanerNumero" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CleanerFechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="CleanerProvincia" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CleanerSexo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CleanerContrasena" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CleanerEstado" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CleanerSueldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CleanerFoto" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteDNI" />
+          </Key>
+          <Property Name="ClienteDNI" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ClienteNombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClienteNumero" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ClienteCorreo" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comprobante">
+          <Key>
+            <PropertyRef Name="ComprobanteId" />
+          </Key>
+          <Property Name="ComprobanteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReservaId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ComprobanteFechaEmision" Type="date" Nullable="false" />
+          <Property Name="ComprobanteMetodoPago" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComprobanteMontoTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="ReservaId" />
+          </Key>
+          <Property Name="ReservaId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CleanerDNI" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ClienteDNI" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServicioId" Type="int" Nullable="false" />
+          <Property Name="ReservaDireccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ReservaProvincia" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ReservaFechaCreacion" Type="date" Nullable="false" />
+          <Property Name="ReservaFechaProgramada" Type="date" Nullable="false" />
+          <Property Name="ReservaFechaInicio" Type="datetime2" Precision="7" />
+          <Property Name="ReservaFechaTerminado" Type="datetime2" Precision="7" />
+          <Property Name="ReservaHora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ReservaEstado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReservaObservacion" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="ServicioId" />
+          </Key>
+          <Property Name="ServicioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServicioNombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ServicioDescripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="ServicioPrecioBase" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cleaner_TO_Reserva">
+          <End Role="Cleaner" Type="Self.Cleaner" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cleaner">
+              <PropertyRef Name="CleanerDNI" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="CleanerDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_TO_Reserva">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteDNI" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ClienteDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserva_TO_Comprobante">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="ReservaId" />
+            </Principal>
+            <Dependent Role="Comprobante">
+              <PropertyRef Name="ReservaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_TO_Reserva">
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicio">
+              <PropertyRef Name="ServicioId" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CLEANPRODBModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cleaner" EntityType="Self.Cleaner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comprobante" EntityType="Self.Comprobante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicio" EntityType="Self.Servicio" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cleaner_TO_Reserva" Association="Self.FK_Cleaner_TO_Reserva">
+            <End Role="Cleaner" EntitySet="Cleaner" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_TO_Reserva" Association="Self.FK_Cliente_TO_Reserva">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserva_TO_Comprobante" Association="Self.FK_Reserva_TO_Comprobante">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="Comprobante" EntitySet="Comprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_TO_Reserva" Association="Self.FK_Servicio_TO_Reserva">
+            <End Role="Servicio" EntitySet="Servicio" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CLEANPRODBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="AdministradorId" />
+          </Key>
+          <Property Name="AdministradorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdministradorUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdministradorContrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cleaner">
+          <Key>
+            <PropertyRef Name="CleanerDNI" />
+          </Key>
+          <Property Name="CleanerDNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerNumero" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerFechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CleanerProvincia" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerSexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerContrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerEstado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerSueldo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK_Cleaner_TO_Reserva" FromRole="Cleaner" ToRole="Reserva" />
+          <Property Name="CleanerFoto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteDNI" />
+          </Key>
+          <Property Name="ClienteDNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClienteNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClienteNumero" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClienteCorreo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK_Cliente_TO_Reserva" FromRole="Cliente" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Comprobante">
+          <Key>
+            <PropertyRef Name="ComprobanteId" />
+          </Key>
+          <Property Name="ComprobanteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReservaId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ComprobanteFechaEmision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ComprobanteMetodoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ComprobanteMontoTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK_Reserva_TO_Comprobante" FromRole="Comprobante" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="ReservaId" />
+          </Key>
+          <Property Name="ReservaId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerDNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClienteDNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServicioId" Type="Int32" Nullable="false" />
+          <Property Name="ReservaDireccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReservaProvincia" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReservaFechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReservaFechaProgramada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReservaFechaInicio" Type="DateTime" Precision="7" />
+          <Property Name="ReservaFechaTerminado" Type="DateTime" Precision="7" />
+          <Property Name="ReservaHora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ReservaEstado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReservaObservacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cleaner" Relationship="Self.FK_Cleaner_TO_Reserva" FromRole="Reserva" ToRole="Cleaner" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_TO_Reserva" FromRole="Reserva" ToRole="Cliente" />
+          <NavigationProperty Name="Comprobante" Relationship="Self.FK_Reserva_TO_Comprobante" FromRole="Reserva" ToRole="Comprobante" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_Servicio_TO_Reserva" FromRole="Reserva" ToRole="Servicio" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="ServicioId" />
+          </Key>
+          <Property Name="ServicioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServicioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServicioDescripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServicioPrecioBase" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK_Servicio_TO_Reserva" FromRole="Servicio" ToRole="Reserva" />
+        </EntityType>
+        <Association Name="FK_Cleaner_TO_Reserva">
+          <End Role="Cleaner" Type="Self.Cleaner" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cleaner">
+              <PropertyRef Name="CleanerDNI" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="CleanerDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_TO_Reserva">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteDNI" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ClienteDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserva_TO_Comprobante">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="ReservaId" />
+            </Principal>
+            <Dependent Role="Comprobante">
+              <PropertyRef Name="ReservaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_TO_Reserva">
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicio">
+              <PropertyRef Name="ServicioId" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDEFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" />
+          <EntitySet Name="Cleaner" EntityType="Self.Cleaner" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Comprobante" EntityType="Self.Comprobante" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <EntitySet Name="Servicio" EntityType="Self.Servicio" />
+          <AssociationSet Name="FK_Cleaner_TO_Reserva" Association="Self.FK_Cleaner_TO_Reserva">
+            <End Role="Cleaner" EntitySet="Cleaner" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_TO_Reserva" Association="Self.FK_Cliente_TO_Reserva">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserva_TO_Comprobante" Association="Self.FK_Reserva_TO_Comprobante">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="Comprobante" EntitySet="Comprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_TO_Reserva" Association="Self.FK_Servicio_TO_Reserva">
+            <End Role="Servicio" EntitySet="Servicio" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CLEANPRODBModelStoreContainer" CdmEntityContainer="BDEFEntities">
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="CLEANPRODBModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="AdministradorId" ColumnName="AdministradorId" />
+                <ScalarProperty Name="AdministradorUsuario" ColumnName="AdministradorUsuario" />
+                <ScalarProperty Name="AdministradorContrasena" ColumnName="AdministradorContrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cleaner">
+            <EntityTypeMapping TypeName="CLEANPRODBModel.Cleaner">
+              <MappingFragment StoreEntitySet="Cleaner">
+                <ScalarProperty Name="CleanerFoto" ColumnName="CleanerFoto" />
+                <ScalarProperty Name="CleanerDNI" ColumnName="CleanerDNI" />
+                <ScalarProperty Name="CleanerNombre" ColumnName="CleanerNombre" />
+                <ScalarProperty Name="CleanerNumero" ColumnName="CleanerNumero" />
+                <ScalarProperty Name="CleanerFechaNacimiento" ColumnName="CleanerFechaNacimiento" />
+                <ScalarProperty Name="CleanerProvincia" ColumnName="CleanerProvincia" />
+                <ScalarProperty Name="CleanerSexo" ColumnName="CleanerSexo" />
+                <ScalarProperty Name="CleanerContrasena" ColumnName="CleanerContrasena" />
+                <ScalarProperty Name="CleanerEstado" ColumnName="CleanerEstado" />
+                <ScalarProperty Name="CleanerSueldo" ColumnName="CleanerSueldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="CLEANPRODBModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="ClienteDNI" ColumnName="ClienteDNI" />
+                <ScalarProperty Name="ClienteNombre" ColumnName="ClienteNombre" />
+                <ScalarProperty Name="ClienteNumero" ColumnName="ClienteNumero" />
+                <ScalarProperty Name="ClienteCorreo" ColumnName="ClienteCorreo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comprobante">
+            <EntityTypeMapping TypeName="CLEANPRODBModel.Comprobante">
+              <MappingFragment StoreEntitySet="Comprobante">
+                <ScalarProperty Name="ComprobanteId" ColumnName="ComprobanteId" />
+                <ScalarProperty Name="ReservaId" ColumnName="ReservaId" />
+                <ScalarProperty Name="ComprobanteFechaEmision" ColumnName="ComprobanteFechaEmision" />
+                <ScalarProperty Name="ComprobanteMetodoPago" ColumnName="ComprobanteMetodoPago" />
+                <ScalarProperty Name="ComprobanteMontoTotal" ColumnName="ComprobanteMontoTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="CLEANPRODBModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="ReservaId" ColumnName="ReservaId" />
+                <ScalarProperty Name="CleanerDNI" ColumnName="CleanerDNI" />
+                <ScalarProperty Name="ClienteDNI" ColumnName="ClienteDNI" />
+                <ScalarProperty Name="ServicioId" ColumnName="ServicioId" />
+                <ScalarProperty Name="ReservaDireccion" ColumnName="ReservaDireccion" />
+                <ScalarProperty Name="ReservaProvincia" ColumnName="ReservaProvincia" />
+                <ScalarProperty Name="ReservaFechaCreacion" ColumnName="ReservaFechaCreacion" />
+                <ScalarProperty Name="ReservaFechaProgramada" ColumnName="ReservaFechaProgramada" />
+                <ScalarProperty Name="ReservaFechaInicio" ColumnName="ReservaFechaInicio" />
+                <ScalarProperty Name="ReservaFechaTerminado" ColumnName="ReservaFechaTerminado" />
+                <ScalarProperty Name="ReservaHora" ColumnName="ReservaHora" />
+                <ScalarProperty Name="ReservaEstado" ColumnName="ReservaEstado" />
+                <ScalarProperty Name="ReservaObservacion" ColumnName="ReservaObservacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicio">
+            <EntityTypeMapping TypeName="CLEANPRODBModel.Servicio">
+              <MappingFragment StoreEntitySet="Servicio">
+                <ScalarProperty Name="ServicioId" ColumnName="ServicioId" />
+                <ScalarProperty Name="ServicioNombre" ColumnName="ServicioNombre" />
+                <ScalarProperty Name="ServicioDescripcion" ColumnName="ServicioDescripcion" />
+                <ScalarProperty Name="ServicioPrecioBase" ColumnName="ServicioPrecioBase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

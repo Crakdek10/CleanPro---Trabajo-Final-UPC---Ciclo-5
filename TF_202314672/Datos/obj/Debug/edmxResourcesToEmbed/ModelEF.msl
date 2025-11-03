@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CLEANPRODBModelStoreContainer" CdmEntityContainer="BDEFEntities">
+    <EntitySetMapping Name="Administrador">
+      <EntityTypeMapping TypeName="CLEANPRODBModel.Administrador">
+        <MappingFragment StoreEntitySet="Administrador">
+          <ScalarProperty Name="AdministradorId" ColumnName="AdministradorId" />
+          <ScalarProperty Name="AdministradorUsuario" ColumnName="AdministradorUsuario" />
+          <ScalarProperty Name="AdministradorContrasena" ColumnName="AdministradorContrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cleaner">
+      <EntityTypeMapping TypeName="CLEANPRODBModel.Cleaner">
+        <MappingFragment StoreEntitySet="Cleaner">
+          <ScalarProperty Name="CleanerFoto" ColumnName="CleanerFoto" />
+          <ScalarProperty Name="CleanerDNI" ColumnName="CleanerDNI" />
+          <ScalarProperty Name="CleanerNombre" ColumnName="CleanerNombre" />
+          <ScalarProperty Name="CleanerNumero" ColumnName="CleanerNumero" />
+          <ScalarProperty Name="CleanerFechaNacimiento" ColumnName="CleanerFechaNacimiento" />
+          <ScalarProperty Name="CleanerProvincia" ColumnName="CleanerProvincia" />
+          <ScalarProperty Name="CleanerSexo" ColumnName="CleanerSexo" />
+          <ScalarProperty Name="CleanerContrasena" ColumnName="CleanerContrasena" />
+          <ScalarProperty Name="CleanerEstado" ColumnName="CleanerEstado" />
+          <ScalarProperty Name="CleanerSueldo" ColumnName="CleanerSueldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="CLEANPRODBModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="ClienteDNI" ColumnName="ClienteDNI" />
+          <ScalarProperty Name="ClienteNombre" ColumnName="ClienteNombre" />
+          <ScalarProperty Name="ClienteNumero" ColumnName="ClienteNumero" />
+          <ScalarProperty Name="ClienteCorreo" ColumnName="ClienteCorreo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comprobante">
+      <EntityTypeMapping TypeName="CLEANPRODBModel.Comprobante">
+        <MappingFragment StoreEntitySet="Comprobante">
+          <ScalarProperty Name="ComprobanteId" ColumnName="ComprobanteId" />
+          <ScalarProperty Name="ReservaId" ColumnName="ReservaId" />
+          <ScalarProperty Name="ComprobanteFechaEmision" ColumnName="ComprobanteFechaEmision" />
+          <ScalarProperty Name="ComprobanteMetodoPago" ColumnName="ComprobanteMetodoPago" />
+          <ScalarProperty Name="ComprobanteMontoTotal" ColumnName="ComprobanteMontoTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reserva">
+      <EntityTypeMapping TypeName="CLEANPRODBModel.Reserva">
+        <MappingFragment StoreEntitySet="Reserva">
+          <ScalarProperty Name="ReservaId" ColumnName="ReservaId" />
+          <ScalarProperty Name="CleanerDNI" ColumnName="CleanerDNI" />
+          <ScalarProperty Name="ClienteDNI" ColumnName="ClienteDNI" />
+          <ScalarProperty Name="ServicioId" ColumnName="ServicioId" />
+          <ScalarProperty Name="ReservaDireccion" ColumnName="ReservaDireccion" />
+          <ScalarProperty Name="ReservaProvincia" ColumnName="ReservaProvincia" />
+          <ScalarProperty Name="ReservaFechaCreacion" ColumnName="ReservaFechaCreacion" />
+          <ScalarProperty Name="ReservaFechaProgramada" ColumnName="ReservaFechaProgramada" />
+          <ScalarProperty Name="ReservaFechaInicio" ColumnName="ReservaFechaInicio" />
+          <ScalarProperty Name="ReservaFechaTerminado" ColumnName="ReservaFechaTerminado" />
+          <ScalarProperty Name="ReservaHora" ColumnName="ReservaHora" />
+          <ScalarProperty Name="ReservaEstado" ColumnName="ReservaEstado" />
+          <ScalarProperty Name="ReservaObservacion" ColumnName="ReservaObservacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Servicio">
+      <EntityTypeMapping TypeName="CLEANPRODBModel.Servicio">
+        <MappingFragment StoreEntitySet="Servicio">
+          <ScalarProperty Name="ServicioId" ColumnName="ServicioId" />
+          <ScalarProperty Name="ServicioNombre" ColumnName="ServicioNombre" />
+          <ScalarProperty Name="ServicioDescripcion" ColumnName="ServicioDescripcion" />
+          <ScalarProperty Name="ServicioPrecioBase" ColumnName="ServicioPrecioBase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

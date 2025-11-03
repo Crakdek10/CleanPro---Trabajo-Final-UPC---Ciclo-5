@@ -1,0 +1,132 @@
+﻿<Window x:Class="Presentacion.WindowCleanerReservasInformacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentacion"
+        mc:Ignorable="d"
+        Title="CleanPro - Información de la Reserva" Height="540" Width="550" WindowStartupLocation="CenterScreen" Loaded="Informacion_Loaded">
+    
+    <Window.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="Navy"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#003399"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#E0E0E0"/>
+                                <Setter Property="Foreground" Value="#BDBDBD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="FormLabel" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="FormField" TargetType="TextBox">
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#DDD"/>
+            <Setter Property="Padding" Value="2,5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Información de la Reserva" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+        <TextBlock Grid.Row="1" x:Name="tbReservaCreadaFecha" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,0,15"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tipo de servicio:" Style="{StaticResource FormLabel}"/>
+            <ComboBox  Grid.Row="0" Grid.Column="1" x:Name="cbTipoServicio" Margin="19.817,5,0.217,9.739" IsEnabled="False"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Nombre del cliente:" Style="{StaticResource FormLabel}"/>
+            <TextBox   Grid.Row="1" Grid.Column="1" x:Name="tbNombreCliente" Style="{StaticResource FormField}" Margin="19.817,5.261,0.217,10.313"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Dni del cliente:" Style="{StaticResource FormLabel}"/>
+            <TextBox   Grid.Row="2" Grid.Column="1" x:Name="tbDniCliente" Style="{StaticResource FormField}" Margin="19.817,4.687,0.217,10.052"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Número del cliente:" Style="{StaticResource FormLabel}"/>
+            <TextBox   Grid.Row="3" Grid.Column="1" x:Name="tbNumeroCliente" Style="{StaticResource FormField}" Margin="19.817,4.948,0.217,9.791"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Correo del cliente:" Style="{StaticResource FormLabel}"/>
+            <TextBox   Grid.Row="4" Grid.Column="1" x:Name="tbCorreoCliente" Style="{StaticResource FormField}" Margin="19.817,4.948,0.217,9.791"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Dirección:" Style="{StaticResource FormLabel}"/>
+            <TextBox   Grid.Row="5" Grid.Column="1" x:Name="tbDireccion" Style="{StaticResource FormField}" Margin="19.496,5.209,164.217,9.53"/>
+            <ComboBox  Grid.Row="5" Grid.Column="1" x:Name="cbDepartamento" Margin="166.496,5.209,0.217,9.53" IsEnabled="False">
+                <ComboBoxItem Content="Amazonas"/>
+                <ComboBoxItem Content="Áncash"/>
+                <ComboBoxItem Content="Apurímac"/>
+                <ComboBoxItem Content="Arequipa"/>
+                <ComboBoxItem Content="Ayacucho"/>
+                <ComboBoxItem Content="Cajamarca"/>
+                <ComboBoxItem Content="Cusco"/>
+                <ComboBoxItem Content="Huancavelica"/>
+                <ComboBoxItem Content="Huánuco"/>
+                <ComboBoxItem Content="Ica"/>
+                <ComboBoxItem Content="Junín"/>
+                <ComboBoxItem Content="La Libertad"/>
+                <ComboBoxItem Content="Lambayeque"/>
+                <ComboBoxItem Content="Lima"/>
+                <ComboBoxItem Content="Loreto"/>
+                <ComboBoxItem Content="Madre de Dios"/>
+                <ComboBoxItem Content="Moquegua"/>
+                <ComboBoxItem Content="Pasco"/>
+                <ComboBoxItem Content="Piura"/>
+                <ComboBoxItem Content="Puno"/>
+                <ComboBoxItem Content="San Martín"/>
+                <ComboBoxItem Content="Tacna"/>
+                <ComboBoxItem Content="Tumbes"/>
+                <ComboBoxItem Content="Ucayali"/>
+            </ComboBox>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Fecha programada:" Style="{StaticResource FormLabel}"/>
+            <DatePicker Grid.Row="6" Grid.Column="1" x:Name="dpFechaProgramada" Margin="19.817,5.47,0.217,10.104" IsEnabled="False"/>
+            </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
+            <Button x:Name="SecondaryButton" Content="Volver" Style="{StaticResource SecondaryButton}" Click="btnVolver"/>
+            <Button x:Name="btn_Inicio" Content="Marcar Inicio" Style="{StaticResource PrimaryButton}" IsEnabled="False" Margin="10,0,0,0" Click="btnInicio" />
+            <Button x:Name="btn_Terminado" Content="Marcar Terminado" Style="{StaticResource PrimaryButton}" IsEnabled="False" Margin="10,0,0,0" Click="btnTerminado" />
+            <Button x:Name="btn_Imprimir" Content="Imprimir" Style="{StaticResource PrimaryButton}" IsEnabled="False" Margin="10,0,0,0" Click="btnImprimir"/>
+        </StackPanel>
+    </Grid>
+</Window>

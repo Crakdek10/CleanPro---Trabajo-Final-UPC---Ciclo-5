@@ -1,0 +1,147 @@
+﻿<Window x:Class="Presentacion.WindowComprobantePreview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentacion"
+        mc:Ignorable="d"
+        Title="Vista Previa de Comprobante" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen" Background="#F0F0F0">
+
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#333"/>
+        </Style>
+        <Style x:Key="DataStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#555"/>
+        </Style>
+        <Style x:Key="TotalLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource LabelStyle}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="MainGrid" Margin="40">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <TextBlock Text="Comprobante de pago" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="CleanPro - Servicio de Saneamiento Ambiental" FontSize="14" Foreground="Gray" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Cliente: " Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="tbClienteNombre" Text="Name" Style="{StaticResource DataStyle}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                        <TextBlock Text="DNI: " Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="tbClienteDNI" Text="1010101010" Style="{StaticResource DataStyle}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock Text="Dirección de servicio: " Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="tbDireccion" Text="Av. Arequipa 456, Miraflores" Style="{StaticResource DataStyle}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                        <TextBlock Text="Teléfono: " Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="tbClienteTelefono" Text="987654321" Style="{StaticResource DataStyle}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" TextBlock.TextAlignment="Right">
+                    <TextBlock Text="Teléfono: 943-141-000" Style="{StaticResource DataStyle}"/>
+                    <TextBlock Text="ventas@cleanpro.com.pe" Style="{StaticResource DataStyle}"/>
+                    <TextBlock Text="www.cleanpro.com.pe" Style="{StaticResource DataStyle}"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Row="2" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Fecha del servicio: " Style="{StaticResource LabelStyle}"/>
+                    <TextBlock x:Name="tbFechaServicio" Text="12/08/2025" Style="{StaticResource DataStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                    <TextBlock Text="Tipo de servicio: " Style="{StaticResource LabelStyle}"/>
+                    <TextBlock x:Name="tbTipoServicio" Text="Desinfección ambientes"  Style="{StaticResource DataStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Concepto" Style="{StaticResource LabelStyle}"/>
+                    <TextBlock Grid.Column="1" Text="Total" Style="{StaticResource LabelStyle}"/>
+                </Grid>
+                <Separator Grid.Row="0" VerticalAlignment="Bottom" Margin="0"/>
+
+                <Grid Grid.Row="1" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,2,0,0">
+                        <TextBlock Text="Servicio: " Style="{StaticResource DataStyle}"/>
+                        <TextBlock x:Name="tbTipoServicio2" Text="Desinfección" TextWrapping="Wrap" Style="{StaticResource DataStyle}"/>
+                    </StackPanel>
+                    
+                    <TextBlock Grid.Column="1" x:Name="tbTotal" Text="S/150,00" Style="{StaticResource DataStyle}"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <Separator Grid.Row="2" VerticalAlignment="Bottom" Margin="0,2"/>
+            </Grid>
+
+            <StackPanel Grid.Row="5" VerticalAlignment="Bottom" Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Método de pago: " Style="{StaticResource LabelStyle}"/>
+                    <TextBlock x:Name="tbMetodoPago" Text="Yape" Style="{StaticResource DataStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                    <TextBlock Text="Código de orden: " Style="{StaticResource LabelStyle}"/>
+                    <TextBlock x:Name="tbCodigoOrden" Text="91284185" Style="{StaticResource DataStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Grid Grid.Row="6" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Este comprobante valida la recepción del servicio y el pago correspondiente" FontSize="10" FontStyle="Italic" Foreground="Gray" TextWrapping="Wrap" MaxWidth="340"/>
+                <TextBlock Grid.Column="1" Text="¡Gracias por confiar en CleanPro!" FontSize="11" FontStyle="Italic" Foreground="Gray" VerticalAlignment="Bottom"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

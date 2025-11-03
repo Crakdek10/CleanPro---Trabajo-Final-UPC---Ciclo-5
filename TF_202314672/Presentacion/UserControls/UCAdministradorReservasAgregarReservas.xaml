@@ -1,0 +1,180 @@
+﻿<UserControl x:Class="Presentacion.UserControls.UCAdministradorReservasAgregarReservas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentacion.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="660" d:DesignWidth="1000" Background="White">
+
+    <UserControl.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="Navy"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#003399"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Navy"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </UserControl.Resources>
+
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Crear Reserva" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="921"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+
+                <TextBlock Text="Nombre del cliente:" Style="{StaticResource FormLabel}"/>
+                <TextBox x:Name="tbNombreCliente"/>
+
+                <TextBlock Text="Dni del cliente:" Style="{StaticResource FormLabel}"/>
+                <TextBox x:Name="tbDniCliente"/>
+
+                <TextBlock Text="Correo del cliente:" Style="{StaticResource FormLabel}"/>
+                <TextBox x:Name="tbCorreoCliente"/>
+
+                <TextBlock Text="Número del cliente:" Style="{StaticResource FormLabel}"/>
+                <TextBox x:Name="tbNumeroCliente"/>
+                
+                    <Grid Margin="0,15,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                            <TextBlock Text="Dirección:" Style="{StaticResource FormLabel}" Margin="0"/>
+                            <TextBox x:Name="tbDireccion" Height="22" Margin="0,0,-0.217,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="Departamento:" Style="{StaticResource FormLabel}" Margin="0"/>
+                            <ComboBox x:Name="cbProvincia" SelectionChanged="DepartamentoSelectionChanged">
+                                <ComboBoxItem Content="Elige una provincia" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Amazonas" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Áncash" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Apurímac" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Arequipa" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Ayacucho" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Cajamarca" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Cusco" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Huancavelica" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Huánuco" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Ica" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Junín" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="La Libertad" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Lambayeque" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Lima" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Loreto" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Madre de Dios" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Moquegua" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Pasco" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Piura" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Puno" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="San Martín" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Tacna" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Tumbes" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="Ucayali" HorizontalAlignment="Left" Width="448.278260869565"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+
+                <TextBlock Text="Tipo de servicio:" Style="{StaticResource FormLabel}"/>
+                <ComboBox x:Name="cbTipoServicio"/>
+
+                <Grid Margin="0,15,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Fecha programada:" Style="{StaticResource FormLabel}" Margin="0"/>
+                        <DatePicker x:Name="dpFecha"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Text="Hora:" Style="{StaticResource FormLabel}" Margin="0"/>
+                        <ComboBox x:Name="cbHora">
+                                <ComboBoxItem Content="08:00 am" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="09:00 am" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="10:00 am" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="11:00 am" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="12:00 am" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="14:00 pm" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="15:00 pm" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="16:00 pm" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="17:00 pm" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="18:00 pm" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="19:00 pm" HorizontalAlignment="Left" Width="448.278260869565"/>
+                                <ComboBoxItem Content="20:00 pm" HorizontalAlignment="Left" Width="448.278260869565"/>
+                            </ComboBox>
+                        </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Cleaner(s):" Style="{StaticResource FormLabel}"/>
+                    <ComboBox x:Name="cbCleaners"/>
+                </StackPanel>
+        </ScrollViewer>
+        </Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
+            <Button Content="Volver" Style="{StaticResource SecondaryButton}" Click="btnVolver"/>
+            <Button Content="Agregar" Style="{StaticResource PrimaryButton}" Margin="10,0,0,0" Click="btnAgregar" />
+        </StackPanel>
+    </Grid>
+</UserControl>
