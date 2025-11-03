@@ -1,4 +1,4 @@
-<img width="1525" height="864" alt="image" src="https://github.com/user-attachments/assets/a1956922-4e09-4a7c-9bbe-847e838bba45" /># CleanPro---Trabajo-Final-UPC---Ciclo-5
+# CleanPro---Trabajo-Final-UPC---Ciclo-5
 Realizado por 3 personas
 
 # 🧼 CleanPro - Sistema de Gestión de Servicios de Saneamiento
