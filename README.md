@@ -2,6 +2,7 @@
 Realizado por 3 personas
 
 # 🧼 CleanPro - Sistema de Gestión de Servicios de Saneamiento
+<img width="1699" height="587" alt="Sin título" src="https://github.com/user-attachments/assets/253d19a5-240e-4610-8e4c-181b20631838" />
 
 **CleanPro** es una aplicación de escritorio desarrollada en **C# con WPF** para optimizar la gestión de servicios de limpieza, desinfección y control ambiental en la empresa **CleanPro Perú**.  
 El sistema permite administrar reservas, trabajadores (cleaners), reportes y comprobantes, integrando en una sola herramienta los procesos operativos del área de servicios.
