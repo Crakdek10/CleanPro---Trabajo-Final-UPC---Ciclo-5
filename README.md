@@ -1,5 +1,5 @@
 # CleanPro---Trabajo-Final-UPC---Ciclo-5
-Realizado por 3 personas
+Realizado por 3 personas (Camilo Alonso Párraga Piñin, Alexander Junior Aquino Pérez y Gerardo Manuel Richard Chavez Ayala (yo))
 
 # 🧼 CleanPro - Sistema de Gestión de Servicios de Saneamiento
 <img width="1699" height="587" alt="Sin título" src="https://github.com/user-attachments/assets/253d19a5-240e-4610-8e4c-181b20631838" />
